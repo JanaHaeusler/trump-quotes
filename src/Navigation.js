@@ -41,7 +41,7 @@ const NavBar = styled.nav`
      }
 
     .active {
-        color: plum;
+        color: papayawhip;
     }
 
 `

@@ -13,7 +13,7 @@ import { Route, Switch } from 'react-router'
 
 function App() {
   
-  const {quote, updateQuote, saveQuote, savedQuotes} = useQuote()
+  const {quote, updateQuote, saveQuote, savedQuotes, deleteQuote} = useQuote()
   
   useEffect(
     () => saveLocally('quotes', savedQuotes), [savedQuotes]
@@ -29,7 +29,7 @@ function App() {
               <Button onClick={saveQuote}>Save new quote</Button>
             </ButtonWrapper>
             <QuoteWrapperSavedQuotes>
-              {savedQuotes.map(({id, text, date}) => <li key={id}>{text} ({date})</li>)}
+              {savedQuotes.map(({id, text, date}) => <li key={id}>{text} ({date}) <span onClick={() => deleteQuote({id})}>&times;</span></li>)}
             </QuoteWrapperSavedQuotes>
         </Route>
         <Route path="/savedQuotes">
@@ -60,12 +60,23 @@ const QuoteWrapperSavedQuotes = styled.ul`
   //overflow-y: scroll;
   
   li {
-   list-style: none;
-   margin-bottom: 20px;
-   padding: 15px;
-   border-radius: 5px;
-   box-shadow: 5px 5px 10px #d3d3d3;
-   background-color: #EDEDED;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px;
+    list-style: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #d3d3d3;
+    background-color: #EDEDED;
+  }
+  span {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px #A8A8A8;
+    background-color: teal;
+    color: white;
   }
 `
 

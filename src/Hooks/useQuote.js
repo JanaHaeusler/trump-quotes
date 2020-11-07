@@ -10,7 +10,7 @@ export default function useQuote() {
   
     useEffect(updateQuote, [])
     
-    return({quote, updateQuote, saveQuote, savedQuotes})
+    return({quote, updateQuote, saveQuote, savedQuotes, deleteQuote})
   
       function updateQuote() {
         getRandomQuote()
@@ -22,6 +22,10 @@ export default function useQuote() {
         setSavedQuotes(
             [...savedQuotes, quote]
         )
+      }
+
+      function deleteQuote({id}) {
+       setSavedQuotes(savedQuotes.filter((savedQuote) => savedQuote.id !== id))
       }
 }
 
